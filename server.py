@@ -17,7 +17,6 @@ try:
         conf = json.load(file)
 except FileNotFoundError:
     perror("Failed to load conf.json!")
-    exit(1)
 
 
 # Flask setup
