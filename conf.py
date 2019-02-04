@@ -14,7 +14,7 @@ def conf():
             "port": 3306,
             "user": "eilat_transport",
             "password": "password",
-            "schema": "eilat_transport"
+            "database": "eilat_transport"
         },
         "flightStats": {
             "urls": {
