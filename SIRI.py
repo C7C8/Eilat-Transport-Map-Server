@@ -129,7 +129,7 @@ class SIRI_Request:
         # print('ANSWER:', tostring(answer))
         path = xp_ns([(ns_siri, 'Status')])
         status = answer.findall(path)[0].text
-        if status == 'true':
+        if bool(status):
             print("Request was successful!")
 
 
