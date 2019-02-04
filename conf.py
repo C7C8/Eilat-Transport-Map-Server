@@ -18,7 +18,7 @@ def conf():
         },
         "flightStats": {
             "urls": {
-                "by_airport": "https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/{airport}/arr/{year}/{month}/{day}/{hour}?appId={app_id}&appKey={app_key}&utc=false&numHours=6&codeType=IATA"
+                "arrivalsByAirport": "https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/{airport}/arr/{year}/{month}/{day}/{hour}?appId={app_id}&appKey={app_key}&utc=false&numHours=6&codeType=IATA"
             },
             "appId": "CENSORED",
             "appKey": "CENSORED"

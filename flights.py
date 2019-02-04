@@ -17,13 +17,13 @@ def get_flights_from_api(airport, json_data=None):
 
         # Can't use Request's parameter handling because most of these parameters are built into the URL path,
         # i.e. not passed as part of the querystring
-        url = flight_stats_conf["urls"]["by_airport"].format(airport=airport,
-                                                             year=time.year,
-                                                             month=time.month,
-                                                             day=time.day,
-                                                             hour=time.hour,
-                                                             app_id=flight_stats_conf["appId"],
-                                                             app_key=flight_stats_conf["appKey"])
+        url = flight_stats_conf["urls"]["arrivalsByAirport"].format(airport=airport,
+                                                                    year=time.year,
+                                                                    month=time.month,
+                                                                    day=time.day,
+                                                                    hour=time.hour,
+                                                                    app_id=flight_stats_conf["appId"],
+                                                                    app_key=flight_stats_conf["appKey"])
         response = requests.get(url)
         if response.status_code != 200:
             print("Failed to query flightstats for status of airport " + airport, file=sys.stderr)
@@ -32,4 +32,15 @@ def get_flights_from_api(airport, json_data=None):
     else:
         data = json.loads(json_data)
 
-    return data
+    # Data acquired; extract data we're actually interested in
+    ret = list(map(lambda raw_flight: {
+        "flightId": int(raw_flight["flightId"]),
+        "arrivalId": str(raw_flight["arrivalAirportFsCode"]),
+        "departureId": str(raw_flight["departureAirportFsCode"]),
+        "airlineCode": str(raw_flight["carrierFsCode"]),
+        "flightNumber": int(raw_flight["flightNumber"]),
+        "departure_local": datetime.datetime.fromisoformat(raw_flight["departureDate"]["dateLocal"]),
+        "arrival_local": datetime.datetime.fromisoformat(raw_flight["arrivalDate"]["dateLocal"])
+    }, data["flightStatuses"]))
+    return ret
+

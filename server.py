@@ -1,14 +1,9 @@
 #!/usr/bin/env python3
 from flask import Flask, Blueprint
 from flask_restplus import Api, Resource, reqparse
-import pymysql
-import json
-import sys
 
-from conf import conf
 
 # Flask setup
-
 app = Flask(__name__)
 apiV1 = Blueprint("api", __name__)
 api = Api(apiV1, title="Eilat map data service", description="Eilat map data service")
@@ -22,12 +17,6 @@ def response(success, message, descriptor=None, payload=None):
         return {"status": "success" if success else "error", "message": message}
     else:
         return {"status": "success" if success else "error", "message": message, descriptor: payload}
-
-
-def get_db():
-    """Get a DB cursor, because persistent DB connections = bad"""
-    connection = pymysql.connect(**(conf()["db"]))
-    return connection.cursor()
 
 
 @ns.route("/hello")
