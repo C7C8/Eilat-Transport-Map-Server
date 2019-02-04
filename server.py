@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask, Blueprint
 from flask_restplus import Api, Resource, reqparse
+import pymysql
 import json
 import sys
 
@@ -11,7 +12,15 @@ def perror(*args, **kwargs):
 
 
 # Load server configuration file
-conf = {}
+conf = {
+    "db": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "eilat_transport",
+        "password": "password",
+        "schema": "eilat_transport"
+    }
+}
 try:
     with open("conf.json", "r") as file:
         conf = json.load(file)
@@ -33,6 +42,12 @@ def response(success, message, descriptor=None, payload=None):
         return {"status": "success" if success else "error", "message": message}
     else:
         return {"status": "success" if success else "error", "message": message, descriptor: payload}
+
+
+def get_db():
+    """Get a DB cursor, because persistent DB connections = bad"""
+    connection = pymysql.connect(**(conf["db"]))
+    return connection.cursor()
 
 
 @ns.route("/hello")
