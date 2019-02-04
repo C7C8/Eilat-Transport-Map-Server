@@ -1,9 +1,0 @@
-{
-    "db": {
-        "host": "localhost",
-        "port": 3306,
-        "user": "eilat_transport",
-        "password": "password",
-        "schema": "eilat_transport"
-    }
-}

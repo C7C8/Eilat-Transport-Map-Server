@@ -5,30 +5,10 @@ import pymysql
 import json
 import sys
 
-
-def perror(*args, **kwargs):
-    """Lazy way of writing to stderr"""
-    print(*args, file=sys.stderr, **kwargs)
-
-
-# Load server configuration file
-conf = {
-    "db": {
-        "host": "localhost",
-        "port": 3306,
-        "user": "eilat_transport",
-        "password": "password",
-        "schema": "eilat_transport"
-    }
-}
-try:
-    with open("conf.json", "r") as file:
-        conf = json.load(file)
-except FileNotFoundError:
-    perror("Failed to load conf.json!")
-
+from conf import get_conf
 
 # Flask setup
+
 app = Flask(__name__)
 apiV1 = Blueprint("api", __name__)
 api = Api(apiV1, title="Eilat map data service", description="Eilat map data service")
@@ -46,7 +26,7 @@ def response(success, message, descriptor=None, payload=None):
 
 def get_db():
     """Get a DB cursor, because persistent DB connections = bad"""
-    connection = pymysql.connect(**(conf["db"]))
+    connection = pymysql.connect(**(get_conf()["db"]))
     return connection.cursor()
 
 
