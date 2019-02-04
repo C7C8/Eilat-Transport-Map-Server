@@ -5,7 +5,7 @@ import pymysql
 import json
 import sys
 
-from conf import get_conf
+from conf import conf
 
 # Flask setup
 
@@ -26,7 +26,7 @@ def response(success, message, descriptor=None, payload=None):
 
 def get_db():
     """Get a DB cursor, because persistent DB connections = bad"""
-    connection = pymysql.connect(**(get_conf()["db"]))
+    connection = pymysql.connect(**(conf()["db"]))
     return connection.cursor()
 
 
