@@ -10,7 +10,6 @@ import db
 def get_flights_from_api(airport, json_data=None):
     """Get flights from the FlightRequests API and immediately cache them in the database"""
 
-    # First: Get raw response data
     time = datetime.datetime.now()
     flight_stats_conf = conf()["flightStats"]
 
@@ -24,21 +23,48 @@ def get_flights_from_api(airport, json_data=None):
                                                                 app_id=flight_stats_conf["appId"],
                                                                 app_key=flight_stats_conf["appKey"])
     response = requests.get(url)
+    print(response)
     if response.status_code != 200:
         print("Failed to query flightstats for status of airport " + airport, file=sys.stderr)
         return
     data = response.json()
 
-    # Data acquired; extract data we're actually interested in
-    ret = list(map(lambda raw_flight: {
-        "flightId": int(raw_flight["flightId"]),
-        "arrivalId": str(raw_flight["arrivalAirportFsCode"]),
-        "departureId": str(raw_flight["departureAirportFsCode"]),
-        "airlineCode": str(raw_flight["carrierFsCode"]),
-        "flightNumber": int(raw_flight["flightNumber"]),
-        "departure_local": datetime.datetime.fromisoformat(raw_flight["departureDate"]["dateLocal"]),
-        "arrival_local": datetime.datetime.fromisoformat(raw_flight["arrivalDate"]["dateLocal"])
+    # TODO: Probably change this so we're not needlessly constructing dictionaries from data
+    #  already provided by the server. Doing it this way started out as a way to make the db
+    #  less reliant on how the FlightStats api provides data to us, but now I'm not so sure
+    #  it's a good idea.
+
+    # Data acquired; extract flights
+    ret = list(map(lambda flight: {
+        "flightId": int(flight["flightId"]),
+        "arrivalId": str(flight["arrivalAirportFsCode"]),
+        "departureId": str(flight["departureAirportFsCode"]),
+        "airlineCode": str(flight["carrierFsCode"]),
+        "flightNumber": int(flight["flightNumber"]),
+        "departure_local": datetime.datetime.fromisoformat(flight["departureDate"]["dateLocal"]),
+        "arrival_local": datetime.datetime.fromisoformat(flight["arrivalDate"]["dateLocal"])
     }, data["flightStatuses"]))
+
+    # In order to shove things into the db we need to extract relevant airports & airlines
+    # for better readability on the front end
+
+    if "airports" in data["appendix"].keys():
+        airports = list(map(lambda raw_airport: {
+            "name": raw_airport["name"],
+            "city": raw_airport["city"],
+            "country": raw_airport["countryName"],
+            "fs": raw_airport["fs"],
+            "iata": raw_airport["iata"]
+        }, data["appendix"]["airports"]))
+        db.save_airports(airports)
+
+    if "airlines" in data["appendix"].keys():
+        airlines = list(map(lambda airline: {
+            "name": airline["name"],
+            "fs": airline["fs"],
+            "iata": airline["iata"]
+        }, data["appendix"]["airlines"]))
+        db.save_airlines(airlines)
 
     db.save_flights(ret)
     return ret
