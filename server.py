@@ -2,6 +2,8 @@
 from flask import Flask, Blueprint
 from flask_restplus import Api, Resource, reqparse
 
+import db
+
 
 # Flask setup
 app = Flask(__name__)
@@ -19,10 +21,11 @@ def response(success, message, descriptor=None, payload=None):
         return {"status": "success" if success else "error", "message": message, descriptor: payload}
 
 
-@ns.route("/hello")
+@ns.route("/flights")
 class HelloWorld(Resource):
     def get(self):
-        return response(True, "Hello world!")
+        flights = db.get_flights()
+        return response(True, "Found {} flights".format(len(flights)), "flights", flights)
 
 
 # Run Flask development server.
