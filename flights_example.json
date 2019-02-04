@@ -1,0 +1,710 @@
+{
+	"request": {
+		"airport": {
+			"requestedCode": "ETH",
+			"fsCode": "ETH"
+		},
+		"date": {
+			"year": "2019",
+			"month": "2",
+			"day": "3",
+			"interpreted": "2019-02-03"
+		},
+		"hourOfDay": {
+			"requested": "10",
+			"interpreted": 10
+		},
+		"numHours": {
+			"requested": "6",
+			"interpreted": 6
+		},
+		"utc": {
+			"requested": "false",
+			"interpreted": false
+		},
+		"codeType": {
+			"requested": "IATA",
+			"interpreted": "IATA"
+		},
+		"maxFlights": {},
+		"extendedOptions": {},
+		"url": "https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/ETH/arr/2019/2/3/10"
+	},
+	"appendix": {
+		"airlines": [
+			{
+				"fs": "IZ",
+				"iata": "IZ",
+				"icao": "AIZ",
+				"name": "Arkia Israeli Airlines",
+				"active": true
+			},
+			{
+				"fs": "6H",
+				"iata": "6H",
+				"icao": "ISR",
+				"name": "Israir Airlines",
+				"active": true
+			}
+		],
+		"airports": [
+			{
+				"fs": "SDV",
+				"iata": "SDV",
+				"icao": "LLSD",
+				"name": "Dov Hoz Airport",
+				"city": "Tel Aviv-Yafo",
+				"cityCode": "TLV",
+				"countryCode": "IL",
+				"countryName": "Israel",
+				"regionName": "Middle East",
+				"timeZoneRegionName": "Asia/Jerusalem",
+				"localTime": "2019-02-04T13:22:48.167",
+				"utcOffsetHours": 2.0,
+				"latitude": 32.104885,
+				"longitude": 34.787858,
+				"elevationFeet": 43,
+				"classification": 4,
+				"active": true,
+				"delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/SDV?codeType=fs",
+				"weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/SDV?codeType=fs"
+			},
+			{
+				"fs": "ETH",
+				"iata": "ETH",
+				"icao": "LLET",
+				"name": "Eilat Airport",
+				"city": "Elat",
+				"cityCode": "ETH",
+				"countryCode": "IL",
+				"countryName": "Israel",
+				"regionName": "Middle East",
+				"timeZoneRegionName": "Asia/Jerusalem",
+				"localTime": "2019-02-04T13:22:48.131",
+				"utcOffsetHours": 2.0,
+				"latitude": 29.55625,
+				"longitude": 34.957443,
+				"elevationFeet": 24,
+				"classification": 4,
+				"active": true,
+				"delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/ETH?codeType=fs",
+				"weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/ETH?codeType=fs"
+			},
+			{
+				"fs": "TLV",
+				"iata": "TLV",
+				"icao": "LLBG",
+				"name": "Ben Gurion International Airport",
+				"city": "Tel Aviv-Yafo",
+				"cityCode": "TLV",
+				"countryCode": "IL",
+				"countryName": "Israel",
+				"regionName": "Middle East",
+				"timeZoneRegionName": "Asia/Jerusalem",
+				"localTime": "2019-02-04T13:22:48.167",
+				"utcOffsetHours": 2.0,
+				"latitude": 32.000454,
+				"longitude": 34.870741,
+				"elevationFeet": 135,
+				"classification": 2,
+				"active": true,
+				"delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/TLV?codeType=fs",
+				"weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/TLV?codeType=fs"
+			}
+		],
+		"equipments": [
+			{
+				"iata": "E95",
+				"name": "Embraer 195 and Legacy 1000",
+				"turboProp": false,
+				"jet": true,
+				"widebody": false,
+				"regional": true
+			},
+			{
+				"iata": "AT7",
+				"name": "ATR 72",
+				"turboProp": true,
+				"jet": false,
+				"widebody": false,
+				"regional": true
+			},
+			{
+				"iata": "320",
+				"name": "Airbus A320",
+				"turboProp": false,
+				"jet": true,
+				"widebody": false,
+				"regional": false
+			},
+			{
+				"iata": "32S",
+				"name": "Airbus A318 / A319 / A320 / A321",
+				"turboProp": false,
+				"jet": true,
+				"widebody": false,
+				"regional": false
+			},
+			{
+				"iata": "753",
+				"name": "Boeing 757-300 Passenger",
+				"turboProp": false,
+				"jet": true,
+				"widebody": false,
+				"regional": false
+			},
+			{
+				"iata": "E90",
+				"name": "Embraer 190",
+				"turboProp": false,
+				"jet": true,
+				"widebody": false,
+				"regional": true
+			},
+			{
+				"iata": "ATR",
+				"name": "ATR 42 / ATR 72",
+				"turboProp": true,
+				"jet": false,
+				"widebody": false,
+				"regional": true
+			}
+		]
+	},
+	"flightStatuses": [
+		{
+			"flightId": 988695985,
+			"carrierFsCode": "6H",
+			"flightNumber": "429",
+			"departureAirportFsCode": "SDV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T09:45:00.000",
+				"dateUtc": "2019-02-03T07:45:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T10:45:00.000",
+				"dateUtc": "2019-02-03T08:45:00.000Z"
+			},
+			"status": "U",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "Y",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T09:45:00.000",
+					"dateUtc": "2019-02-03T07:45:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T10:45:00.000",
+					"dateUtc": "2019-02-03T08:45:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T09:45:00.000",
+					"dateUtc": "2019-02-03T07:45:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T10:02:00.000",
+					"dateUtc": "2019-02-03T08:02:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T10:02:00.000",
+					"dateUtc": "2019-02-03T08:02:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T10:45:00.000",
+					"dateUtc": "2019-02-03T08:45:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 60
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "ATR",
+				"actualEquipmentIataCode": "AT7",
+				"tailNumber": "4X-ATI"
+			}
+		},
+		{
+			"flightId": 988741974,
+			"carrierFsCode": "IZ",
+			"flightNumber": "843",
+			"departureAirportFsCode": "TLV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T11:05:00.000",
+				"dateUtc": "2019-02-03T09:05:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T12:05:00.000",
+				"dateUtc": "2019-02-03T10:05:00.000Z"
+			},
+			"status": "L",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "Y",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T11:05:00.000",
+					"dateUtc": "2019-02-03T09:05:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T12:05:00.000",
+					"dateUtc": "2019-02-03T10:05:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T11:05:00.000",
+					"dateUtc": "2019-02-03T09:05:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T11:30:00.000",
+					"dateUtc": "2019-02-03T09:30:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T11:30:00.000",
+					"dateUtc": "2019-02-03T09:30:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T12:05:00.000",
+					"dateUtc": "2019-02-03T10:05:00.000Z"
+				},
+				"estimatedRunwayArrival": {
+					"dateLocal": "2019-02-03T12:07:00.000",
+					"dateUtc": "2019-02-03T10:07:00.000Z"
+				},
+				"actualRunwayArrival": {
+					"dateLocal": "2019-02-03T12:07:00.000",
+					"dateUtc": "2019-02-03T10:07:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 60,
+				"airMinutes": 37
+			},
+			"airportResources": {
+				"departureTerminal": "1"
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "753",
+				"actualEquipmentIataCode": "753",
+				"tailNumber": "4X-BAU"
+			}
+		},
+		{
+			"flightId": 988696136,
+			"carrierFsCode": "6H",
+			"flightNumber": "431",
+			"departureAirportFsCode": "SDV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T11:15:00.000",
+				"dateUtc": "2019-02-03T09:15:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T12:15:00.000",
+				"dateUtc": "2019-02-03T10:15:00.000Z"
+			},
+			"status": "U",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "Y",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T11:15:00.000",
+					"dateUtc": "2019-02-03T09:15:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T12:15:00.000",
+					"dateUtc": "2019-02-03T10:15:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T11:15:00.000",
+					"dateUtc": "2019-02-03T09:15:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T11:04:00.000",
+					"dateUtc": "2019-02-03T09:04:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T11:04:00.000",
+					"dateUtc": "2019-02-03T09:04:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T12:15:00.000",
+					"dateUtc": "2019-02-03T10:15:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 60
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "ATR",
+				"actualEquipmentIataCode": "AT7",
+				"tailNumber": "4X-ATJ"
+			}
+		},
+		{
+			"flightId": 988696011,
+			"carrierFsCode": "6H",
+			"flightNumber": "43",
+			"departureAirportFsCode": "TLV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T11:50:00.000",
+				"dateUtc": "2019-02-03T09:50:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T12:45:00.000",
+				"dateUtc": "2019-02-03T10:45:00.000Z"
+			},
+			"status": "U",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "Y",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T11:50:00.000",
+					"dateUtc": "2019-02-03T09:50:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T12:45:00.000",
+					"dateUtc": "2019-02-03T10:45:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T11:50:00.000",
+					"dateUtc": "2019-02-03T09:50:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T12:39:00.000",
+					"dateUtc": "2019-02-03T10:39:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T12:39:00.000",
+					"dateUtc": "2019-02-03T10:39:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T12:45:00.000",
+					"dateUtc": "2019-02-03T10:45:00.000Z"
+				},
+				"estimatedRunwayArrival": {
+					"dateLocal": "2019-02-03T13:14:00.000",
+					"dateUtc": "2019-02-03T11:14:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 55
+			},
+			"airportResources": {
+				"departureTerminal": "1"
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "320",
+				"actualEquipmentIataCode": "32S",
+				"tailNumber": "4X-ABF"
+			}
+		},
+		{
+			"flightId": 988741989,
+			"carrierFsCode": "IZ",
+			"flightNumber": "815",
+			"departureAirportFsCode": "SDV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T12:15:00.000",
+				"dateUtc": "2019-02-03T10:15:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T13:05:00.000",
+				"dateUtc": "2019-02-03T11:05:00.000Z"
+			},
+			"status": "L",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "JY",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T12:15:00.000",
+					"dateUtc": "2019-02-03T10:15:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T13:05:00.000",
+					"dateUtc": "2019-02-03T11:05:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T12:15:00.000",
+					"dateUtc": "2019-02-03T10:15:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T12:33:00.000",
+					"dateUtc": "2019-02-03T10:33:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T12:33:00.000",
+					"dateUtc": "2019-02-03T10:33:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T13:05:00.000",
+					"dateUtc": "2019-02-03T11:05:00.000Z"
+				},
+				"estimatedRunwayArrival": {
+					"dateLocal": "2019-02-03T13:12:00.000",
+					"dateUtc": "2019-02-03T11:12:00.000Z"
+				},
+				"actualRunwayArrival": {
+					"dateLocal": "2019-02-03T13:12:00.000",
+					"dateUtc": "2019-02-03T11:12:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 50,
+				"airMinutes": 39
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "E90",
+				"actualEquipmentIataCode": "E90",
+				"tailNumber": "4X-EMB"
+			}
+		},
+		{
+			"flightId": 988742019,
+			"carrierFsCode": "IZ",
+			"flightNumber": "817",
+			"departureAirportFsCode": "SDV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T13:15:00.000",
+				"dateUtc": "2019-02-03T11:15:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T14:05:00.000",
+				"dateUtc": "2019-02-03T12:05:00.000Z"
+			},
+			"status": "L",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "JY",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T13:15:00.000",
+					"dateUtc": "2019-02-03T11:15:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T14:05:00.000",
+					"dateUtc": "2019-02-03T12:05:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T13:15:00.000",
+					"dateUtc": "2019-02-03T11:15:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T13:19:00.000",
+					"dateUtc": "2019-02-03T11:19:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T13:19:00.000",
+					"dateUtc": "2019-02-03T11:19:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T14:05:00.000",
+					"dateUtc": "2019-02-03T12:05:00.000Z"
+				},
+				"estimatedRunwayArrival": {
+					"dateLocal": "2019-02-03T14:01:00.000",
+					"dateUtc": "2019-02-03T12:01:00.000Z"
+				},
+				"actualRunwayArrival": {
+					"dateLocal": "2019-02-03T14:01:00.000",
+					"dateUtc": "2019-02-03T12:01:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 50,
+				"airMinutes": 42
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "E95",
+				"actualEquipmentIataCode": "E95",
+				"tailNumber": "4X-EMF"
+			}
+		},
+		{
+			"flightId": 988742026,
+			"carrierFsCode": "IZ",
+			"flightNumber": "819",
+			"departureAirportFsCode": "SDV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T14:15:00.000",
+				"dateUtc": "2019-02-03T12:15:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T15:05:00.000",
+				"dateUtc": "2019-02-03T13:05:00.000Z"
+			},
+			"status": "U",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "JY",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T14:15:00.000",
+					"dateUtc": "2019-02-03T12:15:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T15:05:00.000",
+					"dateUtc": "2019-02-03T13:05:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T14:15:00.000",
+					"dateUtc": "2019-02-03T12:15:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T15:05:00.000",
+					"dateUtc": "2019-02-03T13:05:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 50
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "E95"
+			}
+		},
+		{
+			"flightId": 988695967,
+			"carrierFsCode": "6H",
+			"flightNumber": "439",
+			"departureAirportFsCode": "SDV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T14:30:00.000",
+				"dateUtc": "2019-02-03T12:30:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T15:30:00.000",
+				"dateUtc": "2019-02-03T13:30:00.000Z"
+			},
+			"status": "U",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "Y",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T14:30:00.000",
+					"dateUtc": "2019-02-03T12:30:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T15:30:00.000",
+					"dateUtc": "2019-02-03T13:30:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T14:30:00.000",
+					"dateUtc": "2019-02-03T12:30:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T14:36:00.000",
+					"dateUtc": "2019-02-03T12:36:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T14:36:00.000",
+					"dateUtc": "2019-02-03T12:36:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T15:30:00.000",
+					"dateUtc": "2019-02-03T13:30:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 60
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "ATR",
+				"actualEquipmentIataCode": "AT7",
+				"tailNumber": "4X-ATJ"
+			}
+		},
+		{
+			"flightId": 988741960,
+			"carrierFsCode": "IZ",
+			"flightNumber": "845",
+			"departureAirportFsCode": "TLV",
+			"arrivalAirportFsCode": "ETH",
+			"departureDate": {
+				"dateLocal": "2019-02-03T14:45:00.000",
+				"dateUtc": "2019-02-03T12:45:00.000Z"
+			},
+			"arrivalDate": {
+				"dateLocal": "2019-02-03T15:45:00.000",
+				"dateUtc": "2019-02-03T13:45:00.000Z"
+			},
+			"status": "L",
+			"schedule": {
+				"flightType": "J",
+				"serviceClasses": "Y",
+				"restrictions": ""
+			},
+			"operationalTimes": {
+				"publishedDeparture": {
+					"dateLocal": "2019-02-03T14:45:00.000",
+					"dateUtc": "2019-02-03T12:45:00.000Z"
+				},
+				"publishedArrival": {
+					"dateLocal": "2019-02-03T15:45:00.000",
+					"dateUtc": "2019-02-03T13:45:00.000Z"
+				},
+				"scheduledGateDeparture": {
+					"dateLocal": "2019-02-03T14:45:00.000",
+					"dateUtc": "2019-02-03T12:45:00.000Z"
+				},
+				"estimatedRunwayDeparture": {
+					"dateLocal": "2019-02-03T15:20:00.000",
+					"dateUtc": "2019-02-03T13:20:00.000Z"
+				},
+				"actualRunwayDeparture": {
+					"dateLocal": "2019-02-03T15:20:00.000",
+					"dateUtc": "2019-02-03T13:20:00.000Z"
+				},
+				"scheduledGateArrival": {
+					"dateLocal": "2019-02-03T15:45:00.000",
+					"dateUtc": "2019-02-03T13:45:00.000Z"
+				},
+				"estimatedRunwayArrival": {
+					"dateLocal": "2019-02-03T15:54:00.000",
+					"dateUtc": "2019-02-03T13:54:00.000Z"
+				},
+				"actualRunwayArrival": {
+					"dateLocal": "2019-02-03T15:54:00.000",
+					"dateUtc": "2019-02-03T13:54:00.000Z"
+				}
+			},
+			"flightDurations": {
+				"scheduledBlockMinutes": 60,
+				"airMinutes": 34
+			},
+			"airportResources": {
+				"departureTerminal": "1"
+			},
+			"flightEquipment": {
+				"scheduledEquipmentIataCode": "753",
+				"actualEquipmentIataCode": "753",
+				"tailNumber": "4X-BAU"
+			}
+		}
+	]
+}
