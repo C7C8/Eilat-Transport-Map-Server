@@ -70,7 +70,9 @@ def get_flights():
                        "airports.country "
                        "FROM flights, airlines, airports "
                        "WHERE flights.airlineCode = airlines.iata "
-                       "AND flights.departureId = airports.iata")
+                       "AND flights.departureId = airports.iata "
+                       "ORDER BY arrival_local "
+                       "LIMIT 250")
         res = cursor.fetchall()
         if res is None:
             return None
