@@ -26,3 +26,31 @@ CREATE TABLE airports (
   fs							CHAR(4)				UNIQUE,
   iata						CHAR(4)				PRIMARY KEY
 );
+
+
+# VIEWS
+
+CREATE OR REPLACE VIEW flights_human_readable AS (
+  SELECT airlineCode,
+         flightNumber,
+         arrival_local,
+         airlines.name as airline,
+         airports.name as airport,
+         airports.city,
+         airports.country
+  FROM flights, airlines, airports
+  WHERE flights.airlineCode = airlines.iata
+    AND flights.departureId = airports.iata
+  ORDER BY arrival_local
+  LIMIT 250
+);
+
+CREATE OR REPLACE VIEW flights_hourly_by_day AS (
+  SELECT
+    COUNT(*)                AS cnt,
+    HOUR(arrival_local)     AS f_hour,
+    WEEKDAY(arrival_local)  AS f_day
+  FROM flights
+  GROUP BY f_hour, f_day
+  ORDER BY f_day ASC, f_hour ASC
+);

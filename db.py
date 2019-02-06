@@ -61,18 +61,7 @@ def save_airports(airports):
 def get_flights():
     """Get most recent 100 flights from the database"""
     with get_db() as cursor:
-        cursor.execute("SELECT airlineCode,"
-                       "flightNumber, "
-                       "arrival_local, "
-                       "airlines.name as airline, "
-                       "airports.name as airport, "
-                       "airports.city, "
-                       "airports.country "
-                       "FROM flights, airlines, airports "
-                       "WHERE flights.airlineCode = airlines.iata "
-                       "AND flights.departureId = airports.iata "
-                       "ORDER BY arrival_local "
-                       "LIMIT 250")
+        cursor.execute("SELECT * FROM flights_human_readable")
         res = cursor.fetchall()
         if res is None:
             return None
@@ -87,3 +76,30 @@ def get_flights():
             "srcCountry": str(flight[6])
         }, res))
 
+
+def get_hourly_by_day_stats():
+    """Get hourly flight counts; computation done in the database using a view"""
+    with get_db() as cursor:
+        cursor.execute("SELECT * FROM flights_hourly_by_day")
+        hours = cursor.fetchall()
+        if hours is None:
+            return None
+
+        ret = [[0 for x in range(24)] for x in range(7)]
+        for hour in hours:
+            ret[hour[2]][hour[1]] = hour[0]
+        return ret
+
+
+def get_daily_stats():
+    """Get daily flight counts; computation done in the database"""
+    with get_db() as cursor:
+        cursor.execute("SELECT WEEKDAY(arrival_local) AS f_day, COUNT(*) AS cnt FROM flights GROUP BY f_day;")
+        days = cursor.fetchall()
+        if days is None:
+            return None
+
+        ret = [0 for x in range(7)]
+        for day in days:
+            ret[day[0]] = day[1]
+        return ret
