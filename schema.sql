@@ -47,10 +47,11 @@ CREATE OR REPLACE VIEW flights_human_readable AS (
 
 CREATE OR REPLACE VIEW flights_hourly_by_day AS (
   SELECT
-    COUNT(*)                AS cnt,
-    HOUR(arrival_local)     AS f_hour,
-    WEEKDAY(arrival_local)  AS f_day
+    COUNT(*)                          AS cnt,
+    HOUR(arrival_local)               AS f_hour,
+    (WEEKDAY(arrival_local) + 1) % 7  AS f_day
   FROM flights
   GROUP BY f_hour, f_day
   ORDER BY f_day ASC, f_hour ASC
 );
+

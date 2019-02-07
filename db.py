@@ -94,7 +94,7 @@ def get_hourly_by_day_stats():
 def get_daily_stats():
     """Get daily flight counts; computation done in the database"""
     with get_db() as cursor:
-        cursor.execute("SELECT WEEKDAY(arrival_local) AS f_day, COUNT(*) AS cnt FROM flights GROUP BY f_day;")
+        cursor.execute("SELECT (WEEKDAY(arrival_local) + 1) % 7 AS f_day, COUNT(*) AS cnt FROM flights GROUP BY f_day;")
         days = cursor.fetchall()
         if days is None:
             return None
