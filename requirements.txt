@@ -1,3 +1,5 @@
+gtfslib
+sqlalchemy
 pygtfs
 aniso8601==4.1.0
 certifi==2018.11.29

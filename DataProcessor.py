@@ -1,14 +1,36 @@
 import json
 import urllib.request
 
-if __name__ == '__main__':
-    my_url = "http://siri.motrealtime.co.il:8081/Siri/SiriServices?wsdl?key=EG898989"
+import requests
 
-    # url = "http://bustime.mta.info/api/siri/vehicle-monitoring.json?key=" + sys.argv[
-    #     1] + "&VehicleMonitoringDetailLevel=calls&LineRef=" + sys.argv[2]
-    response = urllib.request.urlopen(my_url)
-    # Reading the response from the Site and Decoding it to UTF-8 Format
-    data = response.read().decode("utf-8")
-    # Converting the File to JSON Format
-    # data = json.loads(data)
-    print(data)
+from GTFS import get_stops
+from SIRI import StopMonitoringRequest, url
+
+# if __name__ == '__main__':
+req = StopMonitoringRequest()
+codes = get_stops()
+for code in codes:
+    req.addRequest(code)
+stops = []
+try:
+    stops = req.submit()
+except requests.exceptions.ConnectionError as e:
+    print("Failed to connect to " + url)
+
+vehicles = {}
+
+for stop in stops:
+    # print(stop.code)
+    for vehicle in stop.getVehicles():
+        vehicles[vehicle.VehicleRef] = vehicle
+        # print('\t', i, '', vehicle.VehicleRef)
+
+print('Found {} vehicles:'.format(len(vehicles)))
+# for vehicleRef, vehicle in vehicles.items():
+#     print(vehicleRef)
+
+
+for stop in stops:
+    for vehicle in stop.getVehicles():
+        if vehicle.VehicleRef not in vehicles:
+            print('Vehicle', vehicle.VehicleRef, 'not in list!')

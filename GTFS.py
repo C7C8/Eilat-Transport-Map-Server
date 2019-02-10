@@ -1,38 +1,61 @@
-import sqlalchemy
-from pygtfs import Schedule
-from sqlalchemy import orm as SQL, MetaData
-from sqlalchemy.types import FLOAT
+from pygtfs import Schedule, append_feed
+from sqlalchemy import create_engine
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import sessionmaker
 
-lat = {
+from transit_util import Stop
+
+lat_bounds = {
     'high': 29.596243,
     'low': 29.515590,
 }
 
-lon = {
+lon_bounds = {
     'high': 34.998930,
     'low': 34.900423
 }
 
+engine = create_engine('sqlite:///gtfs.sqlite', echo=False)
+automap = automap_base()
+automap.prepare(engine, reflect=True)
 
-def pygtfs_import():
-    sched = Schedule("gtfs.sqlite")
-    # append_feed(sched, "israel-gtfs.zip")
-    coords_lat = sqlalchemy.Column('stop_lat', FLOAT)
-    coords_lon = sqlalchemy.Column('stop_lat', FLOAT)
-    stops = sqlalchemy.Table('stops', MetaData(bind=None), coords_lat, coords_lon)
 
-    q = SQL.Query(stops).filter(coords_lon >= lon['low'], coords_lat <= lon['high'])
-    sched
+def gtfs_import():
+    schedule = Schedule("gtfs.sqlite")
+    append_feed(schedule, "israel-gtfs.zip")
 
-# mytable = Table("mytable", metadata,
-#                         Column('mytable_id', Integer, primary_key=True),
-#                         Column('value', String(50))
 
-# def transitfeed():
-#     import transitfeed.transitfeed.schedule
-#     schedule = transitfeed.Schedule()
-#     schedule.GetStopsInBoundingBox()
+def get_stops():
+    stop_table = automap.classes.stops
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
+    query = session.query(stop_table).filter(stop_table.stop_lon >= lon_bounds['low'],
+                                             stop_table.stop_lon <= lon_bounds['high'],
+                                             stop_table.stop_lat >= lat_bounds['low'],
+                                             stop_table.stop_lat <= lat_bounds['high'])
+    eilat_stops = {}
+    for stop in query:
+        S = Stop()
+        S.name = stop.stop_name
+        S.code = stop.stop_code
+        S.longitude = stop.stop_lon
+        S.latitude = stop.stop_lat
+        S.description = stop.stop_desc
+        eilat_stops[S.code] = S
+        # print(S.code)
+    return eilat_stops
+
+
+def agency_by_id(id):
+    stop_table = automap.classes.stops
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    query = session.query(stop_table).filter(stop_table.stop_lon >= lon_bounds['low'],
+                                             stop_table.stop_lon <= lon_bounds['high'],
+                                             stop_table.stop_lat >= lat_bounds['low'],
+                                             stop_table.stop_lat <= lat_bounds['high'])
 
 if __name__ == '__main__':
-    pygtfs_import()
+    get_stops()
