@@ -22,10 +22,18 @@ def response(success, message, descriptor=None, payload=None):
 
 
 @ns.route("/flights")
-class HelloWorld(Resource):
+class Flights(Resource):
     def get(self):
         flights = db.get_flights()
         return response(True, "Found {} flights".format(len(flights)), "flights", flights)
+
+
+@ns.route("/flightsmat")
+class FlightMatrix(Resource):
+    def get(self):
+        matrix = db.get_hourly_by_day_stats()
+        days = db.get_daily_stats()
+        return response(True, "Hourly matrix & weekly data computed", "data", {"hourly_daily": matrix, "daily": days})
 
 
 # Run Flask development server.
