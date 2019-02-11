@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
+
 from flask import Flask, Blueprint
 from flask_restplus import Api, Resource, reqparse
 
 import db
 
-
 # Flask setup
+from DataProcessor import get_vehicles_json
+
 app = Flask(__name__)
 apiV1 = Blueprint("api", __name__)
 api = Api(apiV1, title="Eilat map data service", description="Eilat map data service")
@@ -34,6 +36,12 @@ class FlightMatrix(Resource):
         matrix = db.get_hourly_by_day_stats()
         days = db.get_daily_stats()
         return response(True, "Hourly matrix & weekly data computed", "data", {"hourly_daily": matrix, "daily": days})
+
+
+@ns.route("/buslocations")
+class BusLocations(Resource):
+    def get(self):
+        return response(True, "Current Bus Locations", "data", get_vehicles_json())
 
 
 # Run Flask development server.

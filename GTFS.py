@@ -43,19 +43,16 @@ def get_stops():
         S.latitude = stop.stop_lat
         S.description = stop.stop_desc
         eilat_stops[S.code] = S
-        # print(S.code)
     return eilat_stops
 
 
 def agency_by_id(id):
-    stop_table = automap.classes.stops
+    agency_table = automap.classes.agency
     Session = sessionmaker(bind=engine)
     session = Session()
+    query = session.query(agency_table).filter(agency_table.agency_id == id)
 
-    query = session.query(stop_table).filter(stop_table.stop_lon >= lon_bounds['low'],
-                                             stop_table.stop_lon <= lon_bounds['high'],
-                                             stop_table.stop_lat >= lat_bounds['low'],
-                                             stop_table.stop_lat <= lat_bounds['high'])
+
 
 if __name__ == '__main__':
     get_stops()

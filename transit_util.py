@@ -10,6 +10,9 @@ class Vehicle:
         self.Longitude = -1
         self.Latitude = -1
 
+    def dict(self):
+        return self.__dict__
+
 
 class Stop:
     latitude = float
