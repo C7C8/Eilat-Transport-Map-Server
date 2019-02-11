@@ -6,3 +6,4 @@ conf.json
 *.sqlite*
 israel-gtfs/
 venv37
+__pycache__
