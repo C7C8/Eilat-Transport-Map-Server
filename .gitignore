@@ -4,4 +4,4 @@ venv/
 conf.json
 *.zip
 *.sqlite*
-israel-gtfs/*
+israel-gtfs/
