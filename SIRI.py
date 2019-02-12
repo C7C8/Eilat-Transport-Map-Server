@@ -204,8 +204,8 @@ class StopMonitoringRequest(SIRI_Request):
                     vehicle.OperatorRef = node_tag(vehicle_node, siri_dir('OperatorRef'))
                     vehicle.DestinationRef = node_tag(vehicle_node, siri_dir('DestinationRef'))
                     for location in vehicle_node.findall(siri_dir('VehicleLocation')):
-                        vehicle.Longitude = node_tag(location, siri_dir('Longitude'))
-                        vehicle.Latitude = node_tag(location, siri_dir('Latitude'))
+                        vehicle.Longitude = float(node_tag(location, siri_dir('Longitude')))
+                        vehicle.Latitude = float(node_tag(location, siri_dir('Latitude')))
 
                 if vehicle.Latitude != -1 and vehicle.Longitude != -1:
                     stop.monitored_vehicles.append(vehicle)
