@@ -45,8 +45,8 @@ def get_vehicles():
 
 
 def get_vehicles_json():
-    vehicles_obj = get_vehicles()
-    vehicles_dict = {}
-    for vehicleID, vehicle in vehicles_obj.items():
-        vehicles_dict[vehicleID] = vehicle.__dict__
-    return json.dumps(vehicles_dict)
+    vehicle_objects = get_vehicles()
+    vehicles_array = []
+    for vehicleID, vehicle in vehicle_objects.items():
+        vehicles_array.append(vehicle.__dict__)
+    return vehicles_array
