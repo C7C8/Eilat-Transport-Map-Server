@@ -7,19 +7,19 @@ class Vehicle:
         self.OperatorRef = ""
         self.Agency = ""
         self.DestinationRef = -1
-        self.Longitude = float
-        self.Latitude = float
+        self.Longitude = -1.0
+        self.Latitude = -1.0
 
     def dict(self):
         return self.__dict__
 
 
 class Stop:
-    latitude = float
-    longitude = float
-    name = str
+    latitude = -1.0
+    longitude = -1.0
+    name = ""
     code = ""
-    description = str
+    description = ""
     monitored_vehicles = []
 
     def getVehicles(self) -> [Vehicle]:
