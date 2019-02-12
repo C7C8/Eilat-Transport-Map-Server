@@ -7,8 +7,8 @@ class Vehicle:
         self.OperatorRef = ""
         self.Agency = ""
         self.DestinationRef = -1
-        self.Longitude = -1
-        self.Latitude = -1
+        self.Longitude = float
+        self.Latitude = float
 
     def dict(self):
         return self.__dict__
