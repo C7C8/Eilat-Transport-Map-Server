@@ -61,7 +61,7 @@ def save_airports(airports):
 def get_flights():
     """Get most recent 100 flights from the database"""
     with get_db() as cursor:
-        cursor.execute("SELECT * FROM flights_human_readable")
+        cursor.execute("SELECT * FROM flights_human_readable ORDER BY arrival_local DESC")
         res = cursor.fetchall()
         if res is None:
             return None
