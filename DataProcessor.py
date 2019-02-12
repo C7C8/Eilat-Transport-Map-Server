@@ -3,7 +3,7 @@ import urllib.request
 
 import requests
 
-from GTFS import get_stops
+import GTFS
 from SIRI import StopMonitoringRequest, url
 
 
@@ -12,7 +12,7 @@ def get_stops():
 
     # if __name__ == '__main__':
     req = StopMonitoringRequest()
-    codes = get_stops()
+    codes = GTFS.get_stops()
     for code in codes:
         req.addRequest(code)
 
