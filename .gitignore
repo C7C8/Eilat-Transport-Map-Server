@@ -7,3 +7,4 @@ conf.json
 israel-gtfs/
 venv37
 __pycache__
+*.sql

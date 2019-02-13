@@ -2,7 +2,7 @@ from pygtfs import Schedule, append_feed
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import sessionmaker
-
+import pymysql
 from transit_util import Stop
 
 lat_bounds = {
@@ -14,10 +14,17 @@ lon_bounds = {
     'high': 34.998930,
     'low': 34.900423
 }
-
-engine = create_engine('sqlite:///gtfs.sqlite', echo=False)
-automap = automap_base()
-automap.prepare(engine, reflect=True)
+print("Creating Engine...", end="")
+engine = None
+try:
+    engine = create_engine('mysql+pymysql://GTFS:luQzDGhoKFAgF78x@icarusnet.me/Israel-GTFS')
+    # engine = create_engine('sqlite:///gtfs.sqlite', echo=False)
+    automap = automap_base()
+    automap.prepare(engine, reflect=True)
+except Exception as e:
+    print("Failed:", e)
+    exit(-1)
+print("Done")
 
 
 def gtfs_import():
@@ -26,6 +33,7 @@ def gtfs_import():
 
 
 def get_stops():
+    print("Loading stops from GTFS...", end="")
     stop_table = automap.classes.stops
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -34,6 +42,7 @@ def get_stops():
                                              stop_table.stop_lon <= lon_bounds['high'],
                                              stop_table.stop_lat >= lat_bounds['low'],
                                              stop_table.stop_lat <= lat_bounds['high'])
+
     eilat_stops = {}
     for stop in query:
         S = Stop()
@@ -43,15 +52,18 @@ def get_stops():
         S.latitude = stop.stop_lat
         S.description = stop.stop_desc
         eilat_stops[S.code] = S
+    print("Done")
     return eilat_stops
 
 
-def agency_by_id(id):
+def agency_by_id(agency_id):
+    # print("Getting Agency Info for Agency ID", agency_id)
     agency_table = automap.classes.agency
     Session = sessionmaker(bind=engine)
     session = Session()
-    query = session.query(agency_table).filter(agency_table.agency_id == id)
-
+    query = session.query(agency_table).filter(agency_table.agency_id == agency_id)
+    for agency in query:
+        return agency.agency_name, agency.agency_url
 
 
 if __name__ == '__main__':

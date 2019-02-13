@@ -9,6 +9,9 @@ class Vehicle:
         self.DestinationRef = -1
         self.Longitude = -1.0
         self.Latitude = -1.0
+        self.AgencyID = ""
+        self.AgencyName = ""
+        self.AgencyURL = ""
 
     def dict(self):
         return self.__dict__
