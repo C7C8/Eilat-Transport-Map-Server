@@ -68,3 +68,8 @@ def get_flights_from_api(airport, json_data=None):
 
     db.save_flights(ret)
     return ret
+
+
+print(len(get_flights_from_api("ETH")))
+print(len(get_flights_from_api("ETM")))
+print(len(get_flights_from_api("VDA")))
