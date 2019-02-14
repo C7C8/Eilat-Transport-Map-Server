@@ -16,6 +16,9 @@ def conf():
             "password": "password",
             "database": "eilat_transport"
         },
+        "gtfs": {
+            "url": "sqlite:///gtfs.sqlite"
+        },
         "flightStats": {
             "urls": {
                 "arrivalsByAirport": "https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/{airport}/arr/{year}/{month}/{day}/{hour}?appId={app_id}&appKey={app_key}&utc=false&numHours=6&codeType=IATA"
