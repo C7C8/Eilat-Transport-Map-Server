@@ -23,7 +23,6 @@ def get_flights_from_api(airport, json_data=None):
                                                                 app_id=flight_stats_conf["appId"],
                                                                 app_key=flight_stats_conf["appKey"])
     response = requests.get(url)
-    print(response)
     if response.status_code != 200:
         print("Failed to query flightstats for status of airport " + airport, file=sys.stderr)
         return
