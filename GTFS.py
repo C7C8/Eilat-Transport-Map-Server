@@ -35,7 +35,7 @@ def gtfs_import():
 
 def get_stops():
     print("Loading stops from GTFS...", end="")
-    stop_table = automap.classes.stops
+    stop_table = automap.classes.gtfs_stops
     Session = sessionmaker(bind=engine)
     session = Session()
 
@@ -59,7 +59,7 @@ def get_stops():
 
 def agency_by_id(agency_id):
     # print("Getting Agency Info for Agency ID", agency_id)
-    agency_table = automap.classes.agency
+    agency_table = automap.classes.gtfs_agency
     Session = sessionmaker(bind=engine)
     session = Session()
     query = session.query(agency_table).filter(agency_table.agency_id == agency_id)
