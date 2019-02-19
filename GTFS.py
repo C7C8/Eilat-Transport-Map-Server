@@ -2,7 +2,6 @@ from pygtfs import Schedule, append_feed
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import sessionmaker
-
 from conf import conf
 from transit_util import Stop
 
@@ -18,8 +17,9 @@ lon_bounds = {
 print("Creating Engine...", end="")
 engine = None
 try:
-    engine = create_engine(conf()["gtfs"]["url"])
-    # engine = create_engine('sqlite:///gtfs.sqlite', echo=False)
+    DB = conf()['db']
+    engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.format(DB['user'], DB['password'], DB['host'], DB['database']))
+    # engine = create_engine(conf()["gtfs"]["url"])
     automap = automap_base()
     automap.prepare(engine, reflect=True)
 except Exception as e:
