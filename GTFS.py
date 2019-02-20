@@ -19,7 +19,6 @@ engine = None
 try:
     DB = conf()['db']
     engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.format(DB['user'], DB['password'], DB['host'], DB['database']))
-    # engine = create_engine(conf()["gtfs"]["url"])
     automap = automap_base()
     automap.prepare(engine, reflect=True)
 except Exception as e:

@@ -1,5 +1,5 @@
 import datetime
-import json
+from dateutil import parser
 import requests
 import sys
 
@@ -40,8 +40,8 @@ def get_flights_from_api(airport, json_data=None):
         "departureId": str(flight["departureAirportFsCode"]),
         "airlineCode": str(flight["carrierFsCode"]),
         "flightNumber": int(flight["flightNumber"]),
-        "departure_local": datetime.datetime.fromisoformat(flight["departureDate"]["dateLocal"]),
-        "arrival_local": datetime.datetime.fromisoformat(flight["arrivalDate"]["dateLocal"])
+        "departure_local": parser.parse(flight["departureDate"]["dateLocal"]),
+        "arrival_local": parser.parse(flight["arrivalDate"]["dateLocal"])
     }, data["flightStatuses"]))
 
     # In order to shove things into the db we need to extract relevant airports & airlines
