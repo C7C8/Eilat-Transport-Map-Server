@@ -1,6 +1,8 @@
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from xml.etree.ElementTree import Element, SubElement, dump, ElementTree, fromstring, tostring
+
+import pytz
 import requests
 
 from transit_util import Stop, Vehicle
@@ -54,8 +56,12 @@ def node_tag(node, tag):
 
 
 def get_time():
-    return datetime.now().isoformat(timespec='milliseconds') + "+" \
-           + str(int(time.localtime().tm_gmtoff / 3600)).zfill(2) + ":00"
+    return datetime.now(pytz.timezone('Asia/Jerusalem')).isoformat()
+
+
+class SIRIFailure(Exception):
+    def __init__(self):
+        super().__init__()
 
 
 class Node(Element):
@@ -131,7 +137,7 @@ class SIRI_Request:
 
     def submit(self):
         self.set_time()
-        # print('<?xml version="1.0" ?>' + self.xml_root_node.tostring())
+        print('<?xml version="1.0" ?>' + self.xml_root_node.tostring())
         response = requests.post(url, data=prefix + self.xml_root_node.tostring(),
                                  headers={'Content-Type': 'text/xml'})
         # return response.status_code, response.text
@@ -144,7 +150,7 @@ class SIRI_Request:
             print("Error: NoneType for ElementTree")
             return
         # print('ANSWER:')
-        # dump(answer)
+        dump(answer)
         path = xpath([(ns_siri, 'Status')])
         status = answer.findall(path)[0]
         # print(status)
@@ -152,7 +158,7 @@ class SIRI_Request:
             path = xpath([(ns_siri, 'ErrorCondition'), (ns_siri, 'Description')])
             description = answer.findall(path)[0]
             print("Request failed: " + description.text)
-            return
+            raise SIRIFailure()
 
         StopMonitoringDeliveries = []
 
@@ -187,7 +193,10 @@ class StopMonitoringRequest(SIRI_Request):
 
     def submit(self):
         siri_stops = []
-        data = super().submit()
+        try:
+            data = super().submit()
+        except SIRIFailure:
+            return
         for stop_monitoring_delivery in data:
             stop = Stop()
             for monitored_stop_visit in stop_monitoring_delivery.findall(siri_dir('MonitoredStopVisit')):

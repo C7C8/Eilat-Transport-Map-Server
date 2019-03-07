@@ -2,7 +2,6 @@ import datetime
 from dateutil import parser
 import requests
 import sys
-
 from conf import conf
 import db
 
