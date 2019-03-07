@@ -8,3 +8,4 @@ israel-gtfs/
 venv37
 __pycache__
 *.sql
+*.wsgi
