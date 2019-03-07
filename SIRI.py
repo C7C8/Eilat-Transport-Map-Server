@@ -1,10 +1,10 @@
-import time
-from datetime import datetime, timezone
+from datetime import datetime
 from xml.etree.ElementTree import Element, SubElement, dump, ElementTree, fromstring, tostring
 
 import pytz
 import requests
 
+from conf import conf
 from transit_util import Stop, Vehicle
 
 regex = '(?<=<)\\w+:'
@@ -14,7 +14,7 @@ icarus_siri_proxy = 'http://siri.motrealtime.icarusnet.me/Siri/SiriServices'
 
 url = icarus_siri_proxy
 
-username = 'EG898989'
+username = DB = conf()['SIRI']['Username']
 # username = 'FOO'
 ns0 = 'http://schemas.xmlsoap.org/soap/envelope/'
 ns1 = 'http://new.webservice.namespace'
